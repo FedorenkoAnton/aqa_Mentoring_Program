@@ -1,4 +1,5 @@
-package selenide_tests.checks;
+package selenide_tests.strategy_pattern;
+
 
 import org.openqa.selenium.By;
 
@@ -7,9 +8,10 @@ import utils.TextExamplePaths;
 import utils.TextExamples;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.element;
+import static com.codeborne.selenide.Selenide.open;
 
-public class KotlinCodeExampleCheck extends BaseTest implements ContentCheck {
+public class JavaCodeExampleCheck extends BaseTest implements ContentCheck {
 
     @Override
     public void checkContent(TextExamples example) {
@@ -18,7 +20,9 @@ public class KotlinCodeExampleCheck extends BaseTest implements ContentCheck {
 
         open(getHomePage().getURL());
         element(By.cssSelector(getHomePage().getDocumentationButton())).click();
-        element(By.cssSelector(getDocumentationPage().getKotlinTab())).click();
-        element(By.cssSelector(getDocumentationPage().getTextFromKotlinTab())).shouldHave(text(textFromFile));
+        element(By.cssSelector(getDocumentationPage().getJavaTab())).click();
+        element(By.cssSelector(getDocumentationPage().getTextFromJavaCodeTab())).shouldHave(text(textFromFile));
     }
+
+
 }

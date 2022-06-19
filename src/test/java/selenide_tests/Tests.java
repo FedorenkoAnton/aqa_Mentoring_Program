@@ -3,7 +3,7 @@ package selenide_tests;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import selenide_tests.checks.*;
+import selenide_tests.strategy_pattern.*;
 import selenide_tests.reporter_utils.ListenerTest;
 import utils.TextExamples;
 

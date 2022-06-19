@@ -1,6 +1,5 @@
-package selenide_tests.checks;
+package selenide_tests.strategy_pattern;
 
-import selenide_tests.checks.ContentCheck;
 import utils.TextExamples;
 
 public class TabContentChecks {

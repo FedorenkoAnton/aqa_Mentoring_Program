@@ -1,4 +1,4 @@
-package selenide_tests.checks;
+package selenide_tests.strategy_pattern;
 
 import org.openqa.selenium.By;
 
