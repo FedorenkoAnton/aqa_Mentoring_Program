@@ -2,7 +2,7 @@ package selenide_tests.builder_pattern;
 
 import org.openqa.selenium.By;
 import selenide_tests.BaseTest;
-import utils.TextExamplePaths;
+import selenium_utils.TextExamplePaths;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.element;

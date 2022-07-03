@@ -1,4 +1,4 @@
-package pages;
+package selenium_pages;
 
 public class DocumentationPage extends BasePage {
 

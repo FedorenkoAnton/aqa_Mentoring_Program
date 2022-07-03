@@ -11,8 +11,8 @@ import org.testng.annotations.BeforeTest;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import pages.DocumentationPage;
-import pages.HomePage;
+import selenium_pages.DocumentationPage;
+import selenium_pages.HomePage;
 
 public class BaseTest {
     private WebDriver driver;

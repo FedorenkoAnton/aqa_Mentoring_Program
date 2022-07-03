@@ -1,6 +1,6 @@
 package selenide_tests.strategy_pattern;
 
-import utils.TextExamples;
+import selenium_utils.TextExamples;
 
 public interface ContentCheck {
     void checkContent(TextExamples examples);

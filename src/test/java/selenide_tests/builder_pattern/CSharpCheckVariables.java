@@ -1,7 +1,7 @@
 package selenide_tests.builder_pattern;
 
-import pages.DocumentationPage;
-import utils.TextExamples;
+import selenium_pages.DocumentationPage;
+import selenium_utils.TextExamples;
 
 public class CSharpCheckVariables extends VariableBuilder {
     @Override

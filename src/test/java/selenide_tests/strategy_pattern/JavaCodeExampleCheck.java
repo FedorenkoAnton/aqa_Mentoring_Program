@@ -4,8 +4,8 @@ package selenide_tests.strategy_pattern;
 import org.openqa.selenium.By;
 
 import selenide_tests.BaseTest;
-import utils.TextExamplePaths;
-import utils.TextExamples;
+import selenium_utils.TextExamplePaths;
+import selenium_utils.TextExamples;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.element;

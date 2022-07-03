@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 
 import org.testng.Reporter;
 import selenide_tests.BaseTest;
-import utils.TextExamplePaths;
-import utils.TextExamples;
+import selenium_utils.TextExamplePaths;
+import selenium_utils.TextExamples;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;

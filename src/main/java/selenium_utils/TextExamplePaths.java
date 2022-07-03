@@ -1,4 +1,4 @@
-package utils;
+package selenium_utils;
 
 public class TextExamplePaths {
     private static String csharpPath = "src/main/resources/examples/csharp_example_code.txt";
