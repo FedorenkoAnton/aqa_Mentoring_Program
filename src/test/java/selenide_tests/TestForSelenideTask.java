@@ -5,7 +5,13 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.codeborne.selenide.testng.ScreenShooter;
 import io.qameta.allure.selenide.AllureSelenide;
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
@@ -16,6 +22,13 @@ import selenium_pages.BasePage;
 import selenium_pages.EventsPage;
 import selenium_pages.HomePage;
 import selenium_pages.ProjectPage;
+
+import java.net.URL;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
@@ -85,6 +98,5 @@ public class TestForSelenideTask {
         $(By.xpath(eventsPage.getGoTomeetupsButton())).click();
         loggerFactory.info("Go to meetups button clicked");
         assertEquals("https://www.meetup.com/topics/selenium/", WebDriverRunner.getWebDriver().getCurrentUrl());
-
     }
 }

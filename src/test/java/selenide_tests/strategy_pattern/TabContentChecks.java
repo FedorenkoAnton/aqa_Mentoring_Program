@@ -1,6 +1,6 @@
 package selenide_tests.strategy_pattern;
 
-import selenium_utils.TextExamples;
+import utils.TextExamples;
 
 public class TabContentChecks {
     private ContentCheck contentCheck;

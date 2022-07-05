@@ -1,6 +1,6 @@
 package selenide_tests.builder_pattern;
 
-import selenium_utils.TextExamples;
+import utils.TextExamples;
 
 public class Variables {
     private TextExamples pathToFile;

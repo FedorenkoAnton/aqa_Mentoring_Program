@@ -1,4 +1,4 @@
-package selenium_utils;
+package utils;
 
 public enum TextExamples {
     CSHARP_EXAMPLE,

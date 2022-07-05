@@ -5,7 +5,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import selenide_tests.strategy_pattern.*;
 import selenide_tests.reporter_utils.ListenerTest;
-import selenium_utils.TextExamples;
+import utils.TextExamples;
 
 @Listeners(ListenerTest.class)  //ListenerTest.class
 public class Tests {
