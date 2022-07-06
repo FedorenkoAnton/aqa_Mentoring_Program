@@ -1,35 +1,24 @@
 package selenide_tests;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.codeborne.selenide.testng.ScreenShooter;
-import io.qameta.allure.selenide.AllureSelenide;
 import lombok.SneakyThrows;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import selenium_pages.BasePage;
 import selenium_pages.EventsPage;
 import selenium_pages.HomePage;
 import selenium_pages.ProjectPage;
 
 import java.net.URL;
-import java.time.Duration;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.Assert.assertEquals;
@@ -42,8 +31,21 @@ public class TestForSelenideTask {
     private EventsPage eventsPage;
     private Logger loggerFactory;
 
-    @BeforeClass
-    static void setUp() {
+    private final String URL = "https://oauth-hereonearth692-e8e17:75e551eb-e528-4666-a78a-38df4789d7e4@ondemand.eu-central-1.saucelabs.com:443/wd/hub";
+
+    @SneakyThrows
+    @BeforeMethod
+    public void testsSetUp() {
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("latest");
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("build", "1.0");
+        sauceOptions.put("name", "Check WebDriver topic's header");
+        browserOptions.setCapability("sauce:options", sauceOptions);
+
+        URL url = new URL(URL);
+        WebDriverRunner.setWebDriver(new RemoteWebDriver(url, browserOptions));
 
     }
 
@@ -55,14 +57,13 @@ public class TestForSelenideTask {
         eventsPage = new EventsPage();
         loggerFactory = LoggerFactory.getLogger(TestForSelenideTask.class);
         ScreenShooter.captureSuccessfulTests = true;
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @Test
     public void checkThatProjectPageHasSeleniumWebDriverBlock() {
         open(basePage.getURL());
         element(By.xpath(homePage.getProjectButton())).click();
-        element(By.xpath(projectPage.getSeleniumWebDriverBlock())).should(text("Selenium WebDriver"));
+        element(By.xpath(projectPage.getSeleniumWebDriverBlock())).should(text("Selenium WebDrive"));
     }
 
     @Test
@@ -83,8 +84,7 @@ public class TestForSelenideTask {
     public void checkThatSponsorBlockContainsEightItems() {
         open(basePage.getURL());
         element(By.xpath(homePage.getProjectButton())).click();
-        ElementsCollection elements = $$(By.xpath(projectPage.getSponsorBlock()));
-        assertEquals(elements.size(), 8);
+        $$(By.xpath(projectPage.getSponsorBlock())).shouldHave(size(8));
     }
 
     @Test
@@ -99,4 +99,6 @@ public class TestForSelenideTask {
         loggerFactory.info("Go to meetups button clicked");
         assertEquals("https://www.meetup.com/topics/selenium/", WebDriverRunner.getWebDriver().getCurrentUrl());
     }
+
+
 }

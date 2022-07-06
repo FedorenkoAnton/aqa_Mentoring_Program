@@ -11,6 +11,9 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <allure.version>2.18.1</allure.version>
+        <aspectj.version>1.9.9.1</aspectj.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -74,8 +77,8 @@
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-selenide</artifactId>
-            <version>2.13.6</version>
+            <artifactId>allure-testng</artifactId>
+            <version>2.18.1</version>
         </dependency>
         <dependency>
             <groupId>com.saucelabs</groupId>
@@ -88,8 +91,13 @@
             <version>1.0.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.9.1</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -97,12 +105,50 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <parallel>methods</parallel>
-                    <threadCount>10</threadCount>
-                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.testng.AllureTestNg</value>
+                        </property>
+                    </properties>
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.build.directory}/allure-results</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>11.0.11</version>
+                <configuration>
+                    <webAppSourceDirectory>${project.build.directory}/site</webAppSourceDirectory>
+                    <supportedPackagings>
+                        <supportedPackaging>jar</supportedPackaging>
+                    </supportedPackagings>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.11.2</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
